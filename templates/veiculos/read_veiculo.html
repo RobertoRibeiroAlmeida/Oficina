@@ -1,0 +1,27 @@
+{% load widget_tweaks %}
+
+<div class="modal-header">
+  <h3 class="modal-title">Visualizar Veiculo</h3>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">
+  <div class="">
+    <table class="table table-borderless">
+      <tr><td>Cliente: </td><td>&nbsp;{{ veiculo.cliente }}</td></tr>
+      <tr><td>Marca:   </td><td>&nbsp;{{ veiculo.marca }}</td></tr>
+      <tr><td>Modelo:  </td><td>&nbsp;{{ veiculo.modelo }}</td></tr>
+      <tr><td>Placa:   </td><td>&nbsp;{{ veiculo.placa }}</td></tr>
+      <tr><td>Chassis: </td><td>&nbsp;{{ veiculo.chassis }}</td></tr>
+      <tr><td>Ano Fab.:</td><td>&nbsp;{{ veiculo.ano_fabricacao }}</td></tr>
+      <tr><td>Ano Mod.:</td><td>&nbsp;{{ veiculo.ano_modelo }}</td></tr>
+      <tr><td>Cor:     </td><td>&nbsp;{{ veiculo.cor }}</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+</div>

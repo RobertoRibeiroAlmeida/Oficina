@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% block content %}
+
+  <!-- Modal 1 with id="create-marca"-->
+  <div class="modal fade" id="create-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog mt-5">
+      <div class="modal-content">
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 2 with id="modal" -->
+  <div class="modal fade" tabindex="-1" role="dialog" id="modal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content"></div>
+    </div>
+  </div>
+
+  <h2>C L I E N T E S</h2>
+
+  <!-- Create marca button -->
+  <button id="create-cliente" class="btn btn-primary" type="button" name="button">
+    <span class="fa fa-plus mr-2"></span>Novo Cliente
+  </button>
+  <br/>
+
+  <table id="clientes-table" class="table table-striped">
+    <thead>
+      <tr>
+        <th width="55%">Nome</th>
+        <th width="30%">CPF</th>
+        <th width="5%">&nbsp;</th>
+        <th width="5%">&nbsp;</th>
+        <th width="5%">&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for cliente in object_list %}
+      <tr>
+        <td>{{ cliente.nome }}</td>
+        <td>{{ cliente.cpf }}</td>
+        <td>
+          <!-- Read marca buttons -->
+          <button type="button" class="read-cliente bs-modal btn btn-sm btn-primary" data-form-url="{% url 'core:read_cliente' cliente.pk %}">
+            <span class="fa fa-eye"></span>
+          </button>
+        </td>
+        <td>
+          <!-- Update marca buttons -->
+          <button type="button" class="update-cliente bs-modal btn btn-sm btn-primary" data-form-url="{% url 'core:update_cliente' cliente.pk %}">
+            <span class="fa fa-pencil"></span>
+          </button>
+        </td>
+        <td>
+          <!-- Delete marca buttons -->
+          <button type="button" class="delete-cliente bs-modal btn btn-sm btn-danger" data-form-url="{% url 'core:delete_cliente' cliente.pk %}">
+            <span class="fa fa-trash"></span>
+          </button>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}
+
+{% block extrascripts %}
+<script type="text/javascript">
+  $(function () {
+
+    // Read cliente buttons
+    $(".read-cliente").each(function () {
+        $(this).modalForm({formURL: $(this).data("form-url")});
+    });
+
+    // Update cliente buttons
+    $(".update-cliente").each(function () {
+        $(this).modalForm({formURL: $(this).data("form-url")});
+    });
+
+    // Delete cliente buttons - formURL is retrieved from the data of the element
+    $(".delete-cliente").each(function () {
+        $(this).modalForm({formURL: $(this).data("form-url"), isDeleteForm: true});
+    });
+
+    // Create cliente button opens form in modal with id="create-modal"
+    $("#create-cliente").modalForm({
+        formURL: "{% url 'core:create_cliente' %}",
+        modalID: "#create-modal"
+    });
+
+  });
+</script>
+{% endblock extrascripts %}

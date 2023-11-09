@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% block content %}
+
+  <!-- Modal 1 with id="create-modelo"-->
+  <div class="modal fade" id="create-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog mt-5">
+      <div class="modal-content">
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 2 with id="modal" -->
+  <div class="modal fade" tabindex="-1" role="dialog" id="modal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content"></div>
+    </div>
+  </div>
+
+  <h2>M O D E L O S</h2>
+
+  <!-- Create modelo button -->
+  <button id="create-modelo" class="btn btn-primary" type="button" name="button">
+    <span class="fa fa-plus mr-2"></span>Novo modelo
+  </button>
+  <br/>
+
+  <table id="modelos-table" class="table table-striped">
+    <thead>
+      <tr>
+        <th width="40%">Marca</th>
+        <th width="45%">Modelo</th>
+        <th width="5%">&nbsp;</th>
+        <th width="5%">&nbsp;</th>
+        <th width="5%">&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for modelo in object_list %}
+      <tr>
+        <td>{{ modelo.marca }}</td>
+        <td>{{ modelo.nome }}</td>
+        <td>
+          <!-- Read modelo buttons -->
+          <button type="button" class="read-modelo bs-modal btn btn-sm btn-primary" data-form-url="{% url 'core:read_modelo' modelo.pk %}">
+            <span class="fa fa-eye"></span>
+          </button>
+        </td>
+        <td>
+          <!-- Update modelo buttons -->
+          <button type="button" class="update-modelo bs-modal btn btn-sm btn-primary" data-form-url="{% url 'core:update_modelo' modelo.pk %}">
+            <span class="fa fa-pencil"></span>
+          </button>
+        </td>
+        <td>
+          <!-- Delete modelo buttons -->
+          <button type="button" class="delete-modelo bs-modal btn btn-sm btn-danger" data-form-url="{% url 'core:delete_modelo' modelo.pk %}">
+            <span class="fa fa-trash"></span>
+          </button>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}
+
+{% block extrascripts %}
+<script type="text/javascript">
+  $(function () {
+
+    // Read modelo buttons
+    $(".read-modelo").each(function () {
+        $(this).modalForm({formURL: $(this).data("form-url")});
+    });
+
+    // Update modelo buttons
+    $(".update-modelo").each(function () {
+        $(this).modalForm({formURL: $(this).data("form-url")});
+    });
+
+    // Delete modelo buttons - formURL is retrieved from the data of the element
+    $(".delete-modelo").each(function () {
+        $(this).modalForm({formURL: $(this).data("form-url"), isDeleteForm: true});
+    });
+
+    // Create modelo button opens form in modal with id="create-modal"
+    $("#create-modelo").modalForm({
+        formURL: "{% url 'core:create_modelo' %}",
+        modalID: "#create-modal"
+    });
+
+  });
+</script>
+{% endblock extrascripts %}

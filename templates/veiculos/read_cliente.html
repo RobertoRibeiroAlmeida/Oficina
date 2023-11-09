@@ -1,0 +1,24 @@
+{% load widget_tweaks %}
+
+<div class="modal-header">
+  <h3 class="modal-title">Visualizar Cliente</h3>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">
+  <div class="">
+    <table class="table table-borderless">
+      <tr><td>Nome:      </td><td>&nbsp;{{ cliente.nome }}</td></tr>
+      <tr><td>CPF:       </td><td>&nbsp;{{ cliente.cpf }}</td></tr>
+      <tr><td>Nascimento:</td><td>&nbsp;{{ cliente.nascimento }}</td></tr>
+      <tr><td>Celular I: </td><td>&nbsp;{{ cliente.celular1 }}</td></tr>
+      <tr><td>Celular II:</td><td>&nbsp;{{ cliente.celular2 }}</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+</div>
