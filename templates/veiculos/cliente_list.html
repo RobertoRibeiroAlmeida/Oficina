@@ -41,19 +41,19 @@
         <td>{{ cliente.cpf }}</td>
         <td>
           <!-- Read marca buttons -->
-          <button type="button" class="read-cliente bs-modal btn btn-sm btn-primary" data-form-url="{% url 'core:read_cliente' cliente.pk %}">
+          <button type="button" class="read-cliente bs-modal btn btn-sm btn-primary" data-form-url="{% url 'veiculos:read_cliente' cliente.pk %}">
             <span class="fa fa-eye"></span>
           </button>
         </td>
         <td>
           <!-- Update marca buttons -->
-          <button type="button" class="update-cliente bs-modal btn btn-sm btn-primary" data-form-url="{% url 'core:update_cliente' cliente.pk %}">
+          <button type="button" class="update-cliente bs-modal btn btn-sm btn-primary" data-form-url="{% url 'veiculos:update_cliente' cliente.pk %}">
             <span class="fa fa-pencil"></span>
           </button>
         </td>
         <td>
           <!-- Delete marca buttons -->
-          <button type="button" class="delete-cliente bs-modal btn btn-sm btn-danger" data-form-url="{% url 'core:delete_cliente' cliente.pk %}">
+          <button type="button" class="delete-cliente bs-modal btn btn-sm btn-danger" data-form-url="{% url 'veiculos:delete_cliente' cliente.pk %}">
             <span class="fa fa-trash"></span>
           </button>
         </td>
@@ -85,7 +85,7 @@
 
     // Create cliente button opens form in modal with id="create-modal"
     $("#create-cliente").modalForm({
-        formURL: "{% url 'core:create_cliente' %}",
+        formURL: "{% url 'veiculos:create_cliente' %}",
         modalID: "#create-modal"
     });
 

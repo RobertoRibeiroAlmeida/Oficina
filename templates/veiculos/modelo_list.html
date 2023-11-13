@@ -41,19 +41,19 @@
         <td>{{ modelo.nome }}</td>
         <td>
           <!-- Read modelo buttons -->
-          <button type="button" class="read-modelo bs-modal btn btn-sm btn-primary" data-form-url="{% url 'core:read_modelo' modelo.pk %}">
+          <button type="button" class="read-modelo bs-modal btn btn-sm btn-primary" data-form-url="{% url 'veiculos:read_modelo' modelo.pk %}">
             <span class="fa fa-eye"></span>
           </button>
         </td>
         <td>
           <!-- Update modelo buttons -->
-          <button type="button" class="update-modelo bs-modal btn btn-sm btn-primary" data-form-url="{% url 'core:update_modelo' modelo.pk %}">
+          <button type="button" class="update-modelo bs-modal btn btn-sm btn-primary" data-form-url="{% url 'veiculos:update_modelo' modelo.pk %}">
             <span class="fa fa-pencil"></span>
           </button>
         </td>
         <td>
           <!-- Delete modelo buttons -->
-          <button type="button" class="delete-modelo bs-modal btn btn-sm btn-danger" data-form-url="{% url 'core:delete_modelo' modelo.pk %}">
+          <button type="button" class="delete-modelo bs-modal btn btn-sm btn-danger" data-form-url="{% url 'veiculos:delete_modelo' modelo.pk %}">
             <span class="fa fa-trash"></span>
           </button>
         </td>
@@ -85,7 +85,7 @@
 
     // Create modelo button opens form in modal with id="create-modal"
     $("#create-modelo").modalForm({
-        formURL: "{% url 'core:create_modelo' %}",
+        formURL: "{% url 'veiculos:create_modelo' %}",
         modalID: "#create-modal"
     });
 

@@ -18,30 +18,30 @@ class MarcaList(generic.ListView):
 
 
 class MarcaCreateView(BSModalCreateView):
-  template_name = 'core/create_marca.html'
+  template_name = 'veiculos/create_marca.html'
   form_class = MarcaModelForm
   success_message = 'Marca criada com sucesso.'
-  success_url = reverse_lazy('core:marcas')
+  success_url = reverse_lazy('veiculos:marcas')
 
 
 class MarcaUpdateView(BSModalUpdateView):
   model = Marca
-  template_name = 'core/update_marca.html'
+  template_name = 'veiculos/update_marca.html'
   form_class = MarcaModelForm
   success_message = 'Marca atualizada com sucesso.'
-  success_url = reverse_lazy('core:marcas')
+  success_url = reverse_lazy('veiculos:marcas')
 
 
 class MarcaReadView(BSModalReadView):
   model = Marca
-  template_name = 'core/read_marca.html'
+  template_name = 'veiculos/read_marca.html'
 
 
 class MarcaDeleteView(BSModalDeleteView):
   model = Marca
-  template_name = 'core/delete_marca.html'
+  template_name = 'veiculos/delete_marca.html'
   success_message = 'Marca excluida com sucesso.'
-  success_url = reverse_lazy('core:marcas')
+  success_url = reverse_lazy('veiculos:marcas')
 
 # MODELOS
 class ModeloList(generic.ListView):
@@ -51,27 +51,27 @@ class ModeloList(generic.ListView):
   queryset = Modelo.objects.all()
 
 class ModeloCreateView(BSModalCreateView):
-  template_name = 'core/create_modelo.html'
+  template_name = 'veiculos/create_modelo.html'
   form_class = ModeloModelForm
   success_message = 'Modelo criado com sucesso.'
-  success_url = reverse_lazy('core:modelos')
+  success_url = reverse_lazy('veiculos:modelos')
 
 class ModeloUpdateView(BSModalUpdateView):
   model = Modelo
-  template_name = 'core/update_modelo.html'
+  template_name = 'veiculos/update_modelo.html'
   form_class = ModeloModelForm
   success_message = 'Modelo atualizado com sucesso.'
-  success_url = reverse_lazy('core:modelos')
+  success_url = reverse_lazy('veiculos:modelos')
 
 class ModeloReadView(BSModalReadView):
   model = Modelo
-  template_name = 'core/read_modelo.html'
+  template_name = 'veiculos/read_modelo.html'
 
 class ModeloDeleteView(BSModalDeleteView):
   model = Modelo
-  template_name = 'core/delete_modelo.html'
+  template_name = 'veiculos/delete_modelo.html'
   success_message = 'Modelo excluido com sucesso.'
-  success_url = reverse_lazy('core:modelos')
+  success_url = reverse_lazy('veiculos:modelos')
 
 
 # CLIENTES
@@ -82,27 +82,27 @@ class ClienteList(generic.ListView):
   queryset = Cliente.objects.all()
 
 class ClienteCreateView(BSModalCreateView):
-  template_name = 'core/create_cliente.html'
+  template_name = 'veiculos/create_cliente.html'
   form_class = ClienteModelForm
   success_message = 'Cliente criado com sucesso.'
-  success_url = reverse_lazy('core:clientes')
+  success_url = reverse_lazy('veiculos:clientes')
 
 class ClienteUpdateView(BSModalUpdateView):
   model = Cliente
-  template_name = 'core/update_cliente.html'
+  template_name = 'veiculos/update_cliente.html'
   form_class = ClienteModelForm
   success_message = 'Cliente atualizado com sucesso.'
-  success_url = reverse_lazy('core:clientes')
+  success_url = reverse_lazy('veiculos:clientes')
 
 class ClienteReadView(BSModalReadView):
   model = Cliente
-  template_name = 'core/read_cliente.html'
+  template_name = 'veiculos/read_cliente.html'
 
 class ClienteDeleteView(BSModalDeleteView):
   model = Cliente
-  template_name = 'core/delete_cliente.html'
+  template_name = 'veiculos/delete_cliente.html'
   success_message = 'Cliente excluido com sucesso.'
-  success_url = reverse_lazy('core:clientes')
+  success_url = reverse_lazy('veiculos:clientes')
 
 # VEICULOS
 class VeiculoList(generic.ListView):
@@ -112,24 +112,24 @@ class VeiculoList(generic.ListView):
   queryset = Veiculo.objects.all()
 
 class VeiculoCreateView(BSModalCreateView):
-  template_name = 'core/create_veiculo.html'
+  template_name = 'veiculos/create_veiculo.html'
   form_class = VeiculoModelForm
   success_message = 'Veiculo criado com sucesso.'
-  success_url = reverse_lazy('core:veiculos')
+  success_url = reverse_lazy('veiculos:veiculos')
 
 class VeiculoUpdateView(BSModalUpdateView):
   model = Veiculo
-  template_name = 'core/update_veiculo.html'
+  template_name = 'veiculos/update_veiculo.html'
   form_class = VeiculoModelForm
   success_message = 'Veiculo atualizado com sucesso.'
-  success_url = reverse_lazy('core:veiculos')
+  success_url = reverse_lazy('veiculos:veiculos')
 
 class VeiculoReadView(BSModalReadView):
   model = Veiculo
-  template_name = 'core/read_veiculo.html'
+  template_name = 'veiculos/read_veiculo.html'
 
 class VeiculoDeleteView(BSModalDeleteView):
   model = Veiculo
-  template_name = 'core/delete_veiculo.html'
+  template_name = 'veiculos/delete_veiculo.html'
   success_message = 'Veiculo excluido com sucesso.'
-  success_url = reverse_lazy('core:veiculos')
+  success_url = reverse_lazy('veiculos:veiculos')

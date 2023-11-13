@@ -27,7 +27,7 @@ class Produto(models.Model):
         return self.nome
 
 
-class Especialidades(models.Model):
+class Especialidade(models.Model):
     nome = models.CharField(max_length=50, null=False, blank=False)
 
     def __str__(self):
@@ -39,5 +39,5 @@ class Profissional(models.Model):
     cpf = models.CharField(max_length=20, null=False, blank=False)
     celular1 = models.CharField(max_length=20, null=True, blank=True)
     celular2 = models.CharField(max_length=20, null=True, blank=True)
-    especialidade = models.ForeignKey(Especialidades, on_delete=models.CASCADE)
+    especialidade = models.ForeignKey(Especialidade, on_delete=models.CASCADE)
 

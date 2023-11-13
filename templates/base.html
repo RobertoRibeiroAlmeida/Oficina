@@ -36,10 +36,11 @@
           Cadastros
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarCadastros">
-          <a class="dropdown-item" href="#">Ação</a>
-          <a class="dropdown-item" href="#">Outra ação</a>
+          <a class="dropdown-item" href="{% url 'core:grupos_produtos' %}">Grupos de Produto</a>
+          <a class="dropdown-item" href="{% url 'core:produtos' %}">Produtos</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Algo mais aqui</a>
+          <a class="dropdown-item" href="{% url 'core:especialidades' %}">Especialidades</a>
+          <a class="dropdown-item" href="{% url 'core:profissionais' %}">Profissionais</a>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -47,10 +48,10 @@
           Veiculos
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarVeiculos">
-          <a class="dropdown-item" href="#">Marcas</a>
-          <a class="dropdown-item" href="#">Modelos</a>
-          <a class="dropdown-item" href="#">Clientes</a>
-          <a class="dropdown-item" href="#">Veiculos</a>
+          <a class="dropdown-item" href="{% url 'veiculos:marcas' %}">Marcas</a>
+          <a class="dropdown-item" href="{% url 'veiculos:modelos' %}">Modelos</a>
+          <a class="dropdown-item" href="{% url 'veiculos:clientes' %}">Clientes</a>
+          <a class="dropdown-item" href="{% url 'veiculos:veiculos' %}">Veiculos</a>
         </div>
       </li>
       <li class="nav-item dropdown">

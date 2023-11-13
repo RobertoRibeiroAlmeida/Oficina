@@ -1,0 +1,24 @@
+{% load widget_tweaks %}
+
+<div class="modal-header">
+  <h3 class="modal-title">Visualizar Profissional</h3>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">
+  <div class="">
+    <table class="table table-borderless">
+      <tr><td>Nome:         </td><td>&nbsp;{{ profissional.nome }}</td></tr>
+      <tr><td>CPF:          </td><td>&nbsp;{{ profissional.cpf }}</td></tr>
+      <tr><td>Celular 1:    </td><td>&nbsp;{{ profissional.celular1 }}</td></tr>
+      <tr><td>Celular 2:    </td><td>&nbsp;{{ profissional.celular2 }}</td></tr>
+      <tr><td>Especialidade:</td><td>&nbsp;{{ profissional.especialidade }}</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+</div>
