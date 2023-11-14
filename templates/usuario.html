@@ -1,0 +1,47 @@
+{% load static %}
+
+<!DOCTYPE HTML>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="keywords" content="htmlcss bootstrap, multi level menu, submenu, treeview nav menu examples" />
+  <meta name="description" content="Bootstrap 5 navbar multilevel treeview examples for any type of project, Bootstrap 5" />
+  <title>O F I C I N A - Manutenção de Veículos</title>
+  {% block stylesheets %}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+    <!-- Custom CSS -->
+  {% endblock stylesheets %}
+</head>
+<body>
+
+  <header class="section-header py-4">
+	<div class="container">
+	  <h1>O F I C I N A - Manutenção de Veículos</h1>
+	</div>
+  </header> <!-- section-header.// -->
+
+  <div class="container">
+	<!-- ============= COMPONENT END// ============== -->
+	<section class="section-content py-5">
+	  {% for message in messages %}
+		<div class="alert alert-danger">{{ message }}</div>
+	  {% endfor %}
+	  {% block content %}
+      {% endblock %}
+	</section>
+
+  </div><!-- container //  -->
+
+  <!-- JavaScript -->
+  {% block scripts %}
+    <script src="{% static 'assets/js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'assets/js/popper.min.js' %}"></script>
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery.bootstrap.modal.forms.js' %}"></script>
+    <script src="https://kit.fontawesome.com/e511c0d9d9.js" crossorigin="anonymous"></script>
+  {% endblock scripts %}
+  {% block extrascripts %}{% endblock extrascripts %}
+</body>
+</html>

@@ -1,5 +1,7 @@
 from django.urls import reverse_lazy
 from django.views import generic
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
 from .forms import GrupoProdutoModelForm, ProdutoModelForm, GrupoServicoModelForm, ServicoModelForm, EspecialidadeModelForm, ProfissionalModelForm
 from .models import GrupoProduto, Produto, GrupoServico, Servico, Especialidade, Profissional
 from bootstrap_modal_forms.generic import (
@@ -9,7 +11,9 @@ from bootstrap_modal_forms.generic import (
   BSModalDeleteView
 )
 
+
 # GrupoProduto
+@method_decorator(login_required, name='dispatch')
 class GrupoProdutoList(generic.ListView):
   model = GrupoProduto
   context_object_name = 'grupos_produtos'
@@ -17,6 +21,7 @@ class GrupoProdutoList(generic.ListView):
   queryset = GrupoProduto.objects.all()
 
 
+@method_decorator(login_required, name='dispatch')
 class GrupoProdutoCreateView(BSModalCreateView):
   template_name = 'core/create_grupo_produto.html'
   form_class = GrupoProdutoModelForm
@@ -24,6 +29,7 @@ class GrupoProdutoCreateView(BSModalCreateView):
   success_url = reverse_lazy('core:grupos_produtos')
 
 
+@method_decorator(login_required, name='dispatch')
 class GrupoProdutoUpdateView(BSModalUpdateView):
   model = GrupoProduto
   template_name = 'core/update_grupo_produto.html'
@@ -32,11 +38,13 @@ class GrupoProdutoUpdateView(BSModalUpdateView):
   success_url = reverse_lazy('core:grupos_produtos')
 
 
+@method_decorator(login_required, name='dispatch')
 class GrupoProdutoReadView(BSModalReadView):
   model = GrupoProduto
   template_name = 'core/read_grupo_produto.html'
 
 
+@method_decorator(login_required, name='dispatch')
 class GrupoProdutoDeleteView(BSModalDeleteView):
   model = GrupoProduto
   template_name = 'core/delete_grupo_produto.html'
@@ -45,6 +53,7 @@ class GrupoProdutoDeleteView(BSModalDeleteView):
 
 
 # Produto
+@method_decorator(login_required, name='dispatch')
 class ProdutoList(generic.ListView):
   model = Produto
   context_object_name = 'produtos'
@@ -52,6 +61,7 @@ class ProdutoList(generic.ListView):
   queryset = Produto.objects.all()
 
 
+@method_decorator(login_required, name='dispatch')
 class ProdutoCreateView(BSModalCreateView):
   template_name = 'core/create_produto.html'
   form_class = ProdutoModelForm
@@ -59,6 +69,7 @@ class ProdutoCreateView(BSModalCreateView):
   success_url = reverse_lazy('core:produtos')
 
 
+@method_decorator(login_required, name='dispatch')
 class ProdutoUpdateView(BSModalUpdateView):
   model = Produto
   template_name = 'core/update_produto.html'
@@ -67,11 +78,13 @@ class ProdutoUpdateView(BSModalUpdateView):
   success_url = reverse_lazy('core:produtos')
 
 
+@method_decorator(login_required, name='dispatch')
 class ProdutoReadView(BSModalReadView):
   model = Produto
   template_name = 'core/read_produto.html'
 
 
+@method_decorator(login_required, name='dispatch')
 class ProdutoDeleteView(BSModalDeleteView):
   model = Produto
   template_name = 'core/delete_produto.html'

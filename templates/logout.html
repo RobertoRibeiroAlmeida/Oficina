@@ -1,0 +1,66 @@
+{% load static %}
+
+<!DOCTYPE HTML>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="keywords" content="htmlcss bootstrap, multi level menu, submenu, treeview nav menu examples" />
+  <meta name="description" content="Bootstrap 5 navbar multilevel treeview examples for any type of project, Bootstrap 5" />
+  <title>O F I C I N A - Manutenção de Veículos</title>
+  {% block stylesheets %}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+    <!-- Custom CSS -->
+  {% endblock stylesheets %}
+</head>
+  <body id="page-top">
+
+    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+
+      <a class="navbar-brand mr-1" href="{% url 'index' %}">O F I C I N A</a>
+
+      <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
+        <i class="fas fa-bars"></i>
+      </button>
+
+
+    </nav>
+
+    <div id="wrapper">
+
+
+      <div id="content-wrapper">
+
+        <div class="container-fluid">
+
+            <div class="text-center h3">
+                Você foi desconectado
+                <br><br>
+                <a class="btn btn-success" href="/accounts/login">Entrar?</a>
+            </div>
+
+        </div>
+        <!-- /.container-fluid -->
+
+      </div>
+      <!-- /.content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    {% block scripts %}
+      <script src="{% static 'assets/js/jquery-3.2.1.min.js' %}"></script>
+      <script src="{% static 'assets/js/popper.min.js' %}"></script>
+      <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+      <script src="{% static 'js/jquery.bootstrap.modal.forms.js' %}"></script>
+      <script src="https://kit.fontawesome.com/e511c0d9d9.js" crossorigin="anonymous"></script>
+    {% endblock scripts %}
+  </body>
+
+</html>

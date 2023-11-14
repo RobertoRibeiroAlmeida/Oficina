@@ -67,17 +67,39 @@
           <a class="dropdown-item" href="#">Algo mais aqui</a>
         </div>
       </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
+      </li>
   </div>
 </nav>
 	<!-- ============= COMPONENT END// ============== -->
 	<section class="section-content py-5">
-			{% for message in messages %}
-				<div class="alert alert-danger">{{ message }}</div>
-			{% endfor %}
-			{% block content %} {% endblock %}
+	  {% for message in messages %}
+		<div class="alert alert-danger">{{ message }}</div>
+	  {% endfor %}
+	  {% block content %}
+      {% endblock %}
 	</section>
 
   </div><!-- container //  -->
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Deseja sair?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Selecione "Sair" abaixo se estiver pronto para encerrar sua sessão atual.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="/accounts/logout">Sair</a>
+          </div>
+        </div>
+      </div>
+    </div>
   <!-- JavaScript -->
   {% block scripts %}
     <script src="{% static 'assets/js/jquery-3.2.1.min.js' %}"></script>
