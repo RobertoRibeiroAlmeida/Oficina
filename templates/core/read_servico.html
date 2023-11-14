@@ -1,0 +1,21 @@
+{% load widget_tweaks %}
+
+<div class="modal-header">
+  <h3 class="modal-title">Visualizar Servico</h3>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">
+  <div class="">
+    <table class="table table-borderless">
+      <tr><td>Grupo:  </td><td>&nbsp;{{ servico.grupo }}</td></tr>
+      <tr><td>Nome:   </td><td>&nbsp;{{ servico.nome }}</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+</div>

@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% block content %}
+
+  <!-- Modal 1 with id="create-marca"-->
+  <div class="modal fade" id="create-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog mt-5">
+      <div class="modal-content">
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 2 with id="modal" -->
+  <div class="modal fade" tabindex="-1" role="dialog" id="modal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content"></div>
+    </div>
+  </div>
+
+  <h2>S E R V I C O S</h2>
+
+  <!-- Create marca button -->
+  <button id="create-servico" class="btn btn-primary" type="button" name="button">
+    <span class="fa fa-plus mr-2"></span>Novo Servico
+  </button>
+  <br/>
+
+  <table id="servico-table" class="table table-striped">
+    <thead>
+      <tr>
+        <th width="30%">Grupo</th>
+        <th width="55%">Servico</th>
+        <th width="5%">&nbsp;</th>
+        <th width="5%">&nbsp;</th>
+        <th width="5%">&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for servico in object_list %}
+      <tr>
+        <td>{{ servico.grupo }}</td>
+        <td>{{ servico.nome }}</td>
+        <td>
+          <!-- Read marca buttons -->
+          <button type="button" class="read-servico bs-modal btn btn-sm btn-primary" data-form-url="{% url 'core:read_servico' servico.pk %}">
+            <span class="fa fa-eye"></span>
+          </button>
+        </td>
+        <td>
+          <!-- Update marca buttons -->
+          <button type="button" class="update-servico bs-modal btn btn-sm btn-primary" data-form-url="{% url 'core:update_servico' servico.pk %}">
+            <span class="fa fa-pencil"></span>
+          </button>
+        </td>
+        <td>
+          <!-- Delete marca buttons -->
+          <button type="button" class="delete-servico bs-modal btn btn-sm btn-danger" data-form-url="{% url 'core:delete_servico' servico.pk %}">
+            <span class="fa fa-trash"></span>
+          </button>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}
+
+{% block extrascripts %}
+<script type="text/javascript">
+  $(function () {
+
+    // Read servico buttons
+    $(".read-servico").each(function () {
+        $(this).modalForm({formURL: $(this).data("form-url")});
+    });
+
+    // Update servico buttons
+    $(".update-servico").each(function () {
+        $(this).modalForm({formURL: $(this).data("form-url")});
+    });
+
+    // Delete servico buttons - formURL is retrieved from the data of the element
+    $(".delete-servico").each(function () {
+        $(this).modalForm({formURL: $(this).data("form-url"), isDeleteForm: true});
+    });
+
+    // Create servico button opens form in modal with id="create-modal"
+    $("#create-servico").modalForm({
+        formURL: "{% url 'core:create_servico' %}",
+        modalID: "#create-modal"
+    });
+
+  });
+</script>
+{% endblock extrascripts %}

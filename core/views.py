@@ -1,7 +1,7 @@
 from django.urls import reverse_lazy
 from django.views import generic
-from .forms import GrupoProdutoModelForm, ProdutoModelForm, EspecialidadeModelForm, ProfissionalModelForm
-from .models import GrupoProduto, Produto, Especialidade, Profissional
+from .forms import GrupoProdutoModelForm, ProdutoModelForm, GrupoServicoModelForm, ServicoModelForm, EspecialidadeModelForm, ProfissionalModelForm
+from .models import GrupoProduto, Produto, GrupoServico, Servico, Especialidade, Profissional
 from bootstrap_modal_forms.generic import (
   BSModalCreateView,
   BSModalUpdateView,
@@ -77,6 +77,76 @@ class ProdutoDeleteView(BSModalDeleteView):
   template_name = 'core/delete_produto.html'
   success_message = 'Produto excluido com sucesso.'
   success_url = reverse_lazy('core:produtos')
+
+
+# GrupoServico
+class GrupoServicoList(generic.ListView):
+  model = GrupoServico
+  context_object_name = 'grupos_servicos'
+  template_name = 'gruposervico_list.html'
+  queryset = GrupoServico.objects.all()
+
+
+class GrupoServicoCreateView(BSModalCreateView):
+  template_name = 'core/create_grupo_servico.html'
+  form_class = GrupoServicoModelForm
+  success_message = 'Grupo de servicos criado com sucesso.'
+  success_url = reverse_lazy('core:grupos_servicos')
+
+
+class GrupoServicoUpdateView(BSModalUpdateView):
+  model = GrupoServico
+  template_name = 'core/update_grupo_servico.html'
+  form_class = GrupoServicoModelForm
+  success_message = 'Grupo de servicos atualizado com sucesso.'
+  success_url = reverse_lazy('core:grupos_servicos')
+
+
+class GrupoServicoReadView(BSModalReadView):
+  model = GrupoServico
+  template_name = 'core/read_grupo_servico.html'
+
+
+class GrupoServicoDeleteView(BSModalDeleteView):
+  model = GrupoServico
+  template_name = 'core/delete_grupo_servico.html'
+  success_message = 'Grupo de servicos excluido com sucesso.'
+  success_url = reverse_lazy('core:grupos_servicos')
+
+
+# Servico
+class ServicoList(generic.ListView):
+  model = Servico
+  context_object_name = 'servicos'
+  template_name = 'servico_list.html'
+  queryset = Servico.objects.all()
+
+
+class ServicoCreateView(BSModalCreateView):
+  template_name = 'core/create_servico.html'
+  form_class = ServicoModelForm
+  success_message = 'Servico criado com sucesso.'
+  success_url = reverse_lazy('core:servicos')
+
+
+class ServicoUpdateView(BSModalUpdateView):
+  model = Servico
+  template_name = 'core/update_servico.html'
+  form_class = ServicoModelForm
+  success_message = 'Servico atualizado com sucesso.'
+  success_url = reverse_lazy('core:servicos')
+
+
+class ServicoReadView(BSModalReadView):
+  model = Servico
+  template_name = 'core/read_servico.html'
+
+
+class ServicoDeleteView(BSModalDeleteView):
+  model = Servico
+  template_name = 'core/delete_servico.html'
+  success_message = 'Servico excluido com sucesso.'
+  success_url = reverse_lazy('core:servicos')
 
 
 # Especialidades

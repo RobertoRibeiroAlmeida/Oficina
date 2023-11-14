@@ -27,6 +27,21 @@ class Produto(models.Model):
         return self.nome
 
 
+class GrupoServico(models.Model):
+    nome = models.CharField(max_length=50, null=False, blank=False)
+
+    def __str__(self):
+        return self.nome
+
+
+class Servico(models.Model):
+    grupo = models.ForeignKey(GrupoServico, on_delete=models.CASCADE)
+    nome = models.CharField(max_length=150, blank=False, null=False)
+
+    def __str__(self):
+        return self.nome
+
+
 class Especialidade(models.Model):
     nome = models.CharField(max_length=50, null=False, blank=False)
 

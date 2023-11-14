@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% block content %}
+
+  <!-- Modal 1 with id="create-marca"-->
+  <div class="modal fade" id="create-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog mt-5">
+      <div class="modal-content">
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 2 with id="modal" -->
+  <div class="modal fade" tabindex="-1" role="dialog" id="modal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content"></div>
+    </div>
+  </div>
+
+  <h2>GRUPOS DE SERVICO</h2>
+
+  <!-- Create marca button -->
+  <button id="create-grupo-servico" class="btn btn-primary" type="button" name="button">
+    <span class="fa fa-plus mr-2"></span>Novo Grupo
+  </button>
+  <br/>
+
+  <table id="grupo-servico-table" class="table table-striped">
+    <thead>
+      <tr>
+        <th width="85%">Grupo</th>
+        <th width="5%">&nbsp;</th>
+        <th width="5%">&nbsp;</th>
+        <th width="5%">&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for grupo_servico in object_list %}
+      <tr>
+        <td>{{ grupo_servico.nome }}</td>
+        <td>
+          <!-- Read marca buttons -->
+          <button type="button" class="read-grupo-servico bs-modal btn btn-sm btn-primary" data-form-url="{% url 'core:read_grupo_servico' grupo_servico.pk %}">
+            <span class="fa fa-eye"></span>
+          </button>
+        </td>
+        <td>
+          <!-- Update marca buttons -->
+          <button type="button" class="update-grupo-servico bs-modal btn btn-sm btn-primary" data-form-url="{% url 'core:update_grupo_servico' grupo_servico.pk %}">
+            <span class="fa fa-pencil"></span>
+          </button>
+        </td>
+        <td>
+          <!-- Delete marca buttons -->
+          <button type="button" class="delete-grupo-servico bs-modal btn btn-sm btn-danger" data-form-url="{% url 'core:delete_grupo_servico' grupo_servico.pk %}">
+            <span class="fa fa-trash"></span>
+          </button>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}
+
+{% block extrascripts %}
+<script type="text/javascript">
+  $(function () {
+
+    // Read grupo-servico buttons
+    $(".read-grupo-servico").each(function () {
+        $(this).modalForm({formURL: $(this).data("form-url")});
+    });
+
+    // Update grupo-servico buttons
+    $(".update-grupo-servico").each(function () {
+        $(this).modalForm({formURL: $(this).data("form-url")});
+    });
+
+    // Delete grupo-servico buttons - formURL is retrieved from the data of the element
+    $(".delete-grupo-servico").each(function () {
+        $(this).modalForm({formURL: $(this).data("form-url"), isDeleteForm: true});
+    });
+
+    // Create grupo-servico button opens form in modal with id="create-modal"
+    $("#create-grupo-servico").modalForm({
+        formURL: "{% url 'core:create_grupo_servico' %}",
+        modalID: "#create-modal"
+    });
+
+  });
+</script>
+{% endblock extrascripts %}
