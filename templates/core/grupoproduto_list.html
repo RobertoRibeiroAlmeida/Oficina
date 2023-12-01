@@ -1,15 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
 
-  <!-- Modal 1 with id="create-marca"-->
-  <div class="modal fade" id="create-modal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog mt-5">
-      <div class="modal-content">
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal 2 with id="modal" -->
   <div class="modal fade" tabindex="-1" role="dialog" id="modal">
     <div class="modal-dialog" role="document">
       <div class="modal-content"></div>
@@ -38,20 +29,17 @@
       <tr>
         <td>{{ grupo_produto.nome }}</td>
         <td>
-          <!-- Read marca buttons -->
-          <button type="button" class="read-grupo-produto bs-modal btn btn-sm btn-primary" data-form-url="{% url 'core:read_grupo_produto' grupo_produto.pk %}">
+          <button type="button" id="read-grupo-produto" class="read-grupo-produto bs-modal btn btn-sm btn-primary" data-url="{% url 'core:read_grupo_produto' grupo_produto.pk %}">
             <span class="fa fa-eye"></span>
           </button>
         </td>
         <td>
-          <!-- Update marca buttons -->
-          <button type="button" class="update-grupo-produto bs-modal btn btn-sm btn-primary" data-form-url="{% url 'core:update_grupo_produto' grupo_produto.pk %}">
+          <button type="button" id="update-grupo-produto" class="update-grupo-produto bs-modal btn btn-sm btn-primary" data-url="{% url 'core:update_grupo_produto' grupo_produto.pk %}">
             <span class="fa fa-pencil"></span>
           </button>
         </td>
         <td>
-          <!-- Delete marca buttons -->
-          <button type="button" class="delete-grupo-produto bs-modal btn btn-sm btn-danger" data-form-url="{% url 'core:delete_grupo_produto' grupo_produto.pk %}">
+          <button type="button" id="delete-grupo-produto" class="delete-grupo-produto bs-modal btn btn-sm btn-danger" data-url="{% url 'core:delete_grupo_produto' grupo_produto.pk %}">
             <span class="fa fa-trash"></span>
           </button>
         </td>
@@ -64,29 +52,32 @@
 
 {% block extrascripts %}
 <script type="text/javascript">
-  $(function () {
 
-    // Read grupo-produto buttons
-    $(".read-grupo-produto").each(function () {
-        $(this).modalForm({formURL: $(this).data("form-url")});
-    });
-
-    // Update grupo-produto buttons
-    $(".update-grupo-produto").each(function () {
-        $(this).modalForm({formURL: $(this).data("form-url")});
-    });
-
-    // Delete grupo-produto buttons - formURL is retrieved from the data of the element
-    $(".delete-grupo-produto").each(function () {
-        $(this).modalForm({formURL: $(this).data("form-url"), isDeleteForm: true});
-    });
-
-    // Create grupo-produto button opens form in modal with id="create-modal"
-    $("#create-grupo-produto").modalForm({
-        formURL: "{% url 'core:create_grupo_produto' %}",
-        modalID: "#create-modal"
-    });
-
+  document.addEventListener('DOMContentLoaded', (e) => {
+    modalForm(document.getElementById('create-grupo-produto'), {
+      formURL: "{% url 'core:create_grupo_produto' %}"
+    })
   });
+
+  document.addEventListener('DOMContentLoaded', (e) => {
+    var readButtons   = document.getElementsByClassName("read-grupo-produto");
+    var updateButtons = document.getElementsByClassName("update-grupo-produto");
+    var deleteButtons = document.getElementsByClassName("delete-grupo-produto");
+    for (var index=0; index < readButtons.length; index++) {
+      modalForm(readButtons[index], {
+        formURL: readButtons[index]["dataset"]["url"],
+        isDeleteForm: false
+      });
+      modalForm(updateButtons[index], {
+        formURL: updateButtons[index]["dataset"]["url"],
+        isDeleteForm: false
+      });
+      modalForm(deleteButtons[index], {
+        formURL: deleteButtons[index]["dataset"]["url"],
+        isDeleteForm: true
+      });
+    }
+  });
+
 </script>
 {% endblock extrascripts %}

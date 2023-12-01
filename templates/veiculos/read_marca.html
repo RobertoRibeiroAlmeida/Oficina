@@ -2,17 +2,18 @@
 
 <div class="modal-header">
   <h3 class="modal-title">Visualizar Marca</h3>
-  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
+  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 </div>
 
 <div class="modal-body">
-  <div class="">
-    Nome: {{ marca.nome }}
+  <div class="row mb-3">
+    <label for="colFormLabel1" class="col-sm-2 col-form-label col-form-label-sm">Nome</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control form-control-sm" id="colFormLabe1" placeholder="col-form-label-sm" value="{{ marca.nome }}" readonly>
+    </div>
   </div>
 </div>
 
 <div class="modal-footer">
-  <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+  <button type="button" class="btn btn-info" data-bs-dismiss="modal">Fechar</button>
 </div>

@@ -2,23 +2,42 @@
 
 <div class="modal-header">
   <h3 class="modal-title">Visualizar Profissional</h3>
-  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
+  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 </div>
 
 <div class="modal-body">
-  <div class="">
-    <table class="table table-borderless">
-      <tr><td>Nome:         </td><td>&nbsp;{{ profissional.nome }}</td></tr>
-      <tr><td>CPF:          </td><td>&nbsp;{{ profissional.cpf }}</td></tr>
-      <tr><td>Celular 1:    </td><td>&nbsp;{{ profissional.celular1 }}</td></tr>
-      <tr><td>Celular 2:    </td><td>&nbsp;{{ profissional.celular2 }}</td></tr>
-      <tr><td>Especialidade:</td><td>&nbsp;{{ profissional.especialidade }}</td></tr>
-    </table>
+  <div class="row mb-3">
+    <label for="colFormLabel1" class="col-sm-2 col-form-label col-form-label-sm">Nome</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control form-control-sm" id="colFormLabe1" placeholder="col-form-label-sm" value="{{ profissional.nome }}" readonly>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <label for="colFormLabel2" class="col-sm-2 col-form-label col-form-label-sm">CPF</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control form-control-sm" id="colFormLabe2" placeholder="col-form-label-sm" value="{{ profissional.cpf }}" readonly>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <label for="colFormLabel3" class="col-sm-2 col-form-label col-form-label-sm">Celular 1</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control form-control-sm" id="colFormLabe3" placeholder="col-form-label-sm" value="{{ profissional.celular1 }}" readonly>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <label for="colFormLabel4" class="col-sm-2 col-form-label col-form-label-sm">Celular 1</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control form-control-sm" id="colFormLabe4" placeholder="col-form-label-sm" value="{{ profissional.celular1 }}" readonly>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <label for="colFormLabel5" class="col-sm-2 col-form-label col-form-label-sm">Especialidade</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control form-control-sm" id="colFormLabe5" placeholder="col-form-label-sm" value="{{ profissional.especialidade }}" readonly>
+    </div>
   </div>
 </div>
 
 <div class="modal-footer">
-  <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+  <button type="button" class="btn btn-info" data-bs-dismiss="modal">Fechar</button>
 </div>

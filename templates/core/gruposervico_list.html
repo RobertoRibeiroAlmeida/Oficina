@@ -1,15 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
 
-  <!-- Modal 1 with id="create-marca"-->
-  <div class="modal fade" id="create-modal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog mt-5">
-      <div class="modal-content">
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal 2 with id="modal" -->
   <div class="modal fade" tabindex="-1" role="dialog" id="modal">
     <div class="modal-dialog" role="document">
       <div class="modal-content"></div>
@@ -39,19 +30,19 @@
         <td>{{ grupo_servico.nome }}</td>
         <td>
           <!-- Read marca buttons -->
-          <button type="button" class="read-grupo-servico bs-modal btn btn-sm btn-primary" data-form-url="{% url 'core:read_grupo_servico' grupo_servico.pk %}">
+          <button type="button" id="read-grupo-servico" class="read-grupo-servico bs-modal btn btn-sm btn-primary" data-url="{% url 'core:read_grupo_servico' grupo_servico.pk %}">
             <span class="fa fa-eye"></span>
           </button>
         </td>
         <td>
           <!-- Update marca buttons -->
-          <button type="button" class="update-grupo-servico bs-modal btn btn-sm btn-primary" data-form-url="{% url 'core:update_grupo_servico' grupo_servico.pk %}">
+          <button type="button" id="update-grupo-servico" class="update-grupo-servico bs-modal btn btn-sm btn-primary" data-url="{% url 'core:update_grupo_servico' grupo_servico.pk %}">
             <span class="fa fa-pencil"></span>
           </button>
         </td>
         <td>
           <!-- Delete marca buttons -->
-          <button type="button" class="delete-grupo-servico bs-modal btn btn-sm btn-danger" data-form-url="{% url 'core:delete_grupo_servico' grupo_servico.pk %}">
+          <button type="button" id="delete-grupo-servico" class="delete-grupo-servico bs-modal btn btn-sm btn-danger" data-url="{% url 'core:delete_grupo_servico' grupo_servico.pk %}">
             <span class="fa fa-trash"></span>
           </button>
         </td>
@@ -64,29 +55,32 @@
 
 {% block extrascripts %}
 <script type="text/javascript">
-  $(function () {
 
-    // Read grupo-servico buttons
-    $(".read-grupo-servico").each(function () {
-        $(this).modalForm({formURL: $(this).data("form-url")});
-    });
-
-    // Update grupo-servico buttons
-    $(".update-grupo-servico").each(function () {
-        $(this).modalForm({formURL: $(this).data("form-url")});
-    });
-
-    // Delete grupo-servico buttons - formURL is retrieved from the data of the element
-    $(".delete-grupo-servico").each(function () {
-        $(this).modalForm({formURL: $(this).data("form-url"), isDeleteForm: true});
-    });
-
-    // Create grupo-servico button opens form in modal with id="create-modal"
-    $("#create-grupo-servico").modalForm({
-        formURL: "{% url 'core:create_grupo_servico' %}",
-        modalID: "#create-modal"
-    });
-
+  document.addEventListener('DOMContentLoaded', (e) => {
+    modalForm(document.getElementById('create-grupo-servico'), {
+      formURL: "{% url 'core:create_grupo_servico' %}"
+    })
   });
+
+  document.addEventListener('DOMContentLoaded', (e) => {
+    var readButtons   = document.getElementsByClassName("read-grupo-servico");
+    var updateButtons = document.getElementsByClassName("update-grupo-servico");
+    var deleteButtons = document.getElementsByClassName("delete-grupo-servico");
+    for (var index=0; index < readButtons.length; index++) {
+      modalForm(readButtons[index], {
+        formURL: readButtons[index]["dataset"]["url"],
+        isDeleteForm: false
+      });
+      modalForm(updateButtons[index], {
+        formURL: updateButtons[index]["dataset"]["url"],
+        isDeleteForm: false
+      });
+      modalForm(deleteButtons[index], {
+        formURL: deleteButtons[index]["dataset"]["url"],
+        isDeleteForm: true
+      });
+    }
+  });
+
 </script>
 {% endblock extrascripts %}

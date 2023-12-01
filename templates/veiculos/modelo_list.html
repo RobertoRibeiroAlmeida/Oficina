@@ -1,15 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
 
-  <!-- Modal 1 with id="create-modelo"-->
-  <div class="modal fade" id="create-modal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog mt-5">
-      <div class="modal-content">
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal 2 with id="modal" -->
   <div class="modal fade" tabindex="-1" role="dialog" id="modal">
     <div class="modal-dialog" role="document">
       <div class="modal-content"></div>
@@ -18,9 +9,8 @@
 
   <h2>M O D E L O S</h2>
 
-  <!-- Create modelo button -->
   <button id="create-modelo" class="btn btn-primary" type="button" name="button">
-    <span class="fa fa-plus mr-2"></span>Novo modelo
+    <span class="fa fa-plus mr-2"></span>Novo Modelo
   </button>
   <br/>
 
@@ -40,20 +30,17 @@
         <td>{{ modelo.marca }}</td>
         <td>{{ modelo.nome }}</td>
         <td>
-          <!-- Read modelo buttons -->
-          <button type="button" class="read-modelo bs-modal btn btn-sm btn-primary" data-form-url="{% url 'veiculos:read_modelo' modelo.pk %}">
+          <button type="button" id="read-modelo" class="read-modelo bs-modal btn btn-sm btn-primary" data-url="{% url 'veiculos:read_modelo' modelo.pk %}">
             <span class="fa fa-eye"></span>
           </button>
         </td>
         <td>
-          <!-- Update modelo buttons -->
-          <button type="button" class="update-modelo bs-modal btn btn-sm btn-primary" data-form-url="{% url 'veiculos:update_modelo' modelo.pk %}">
+          <button type="button" id="update-modelo" class="update-modelo bs-modal btn btn-sm btn-primary" data-url="{% url 'veiculos:update_modelo' modelo.pk %}">
             <span class="fa fa-pencil"></span>
           </button>
         </td>
         <td>
-          <!-- Delete modelo buttons -->
-          <button type="button" class="delete-modelo bs-modal btn btn-sm btn-danger" data-form-url="{% url 'veiculos:delete_modelo' modelo.pk %}">
+          <button type="button" id="delete-modelo" class="delete-modelo bs-modal btn btn-sm btn-danger" data-url="{% url 'veiculos:delete_modelo' modelo.pk %}">
             <span class="fa fa-trash"></span>
           </button>
         </td>
@@ -66,29 +53,32 @@
 
 {% block extrascripts %}
 <script type="text/javascript">
-  $(function () {
 
-    // Read modelo buttons
-    $(".read-modelo").each(function () {
-        $(this).modalForm({formURL: $(this).data("form-url")});
-    });
-
-    // Update modelo buttons
-    $(".update-modelo").each(function () {
-        $(this).modalForm({formURL: $(this).data("form-url")});
-    });
-
-    // Delete modelo buttons - formURL is retrieved from the data of the element
-    $(".delete-modelo").each(function () {
-        $(this).modalForm({formURL: $(this).data("form-url"), isDeleteForm: true});
-    });
-
-    // Create modelo button opens form in modal with id="create-modal"
-    $("#create-modelo").modalForm({
-        formURL: "{% url 'veiculos:create_modelo' %}",
-        modalID: "#create-modal"
-    });
-
+  document.addEventListener('DOMContentLoaded', (e) => {
+    modalForm(document.getElementById('create-modelo'), {
+      formURL: "{% url 'veiculos:create_modelo' %}"
+    })
   });
+
+  document.addEventListener('DOMContentLoaded', (e) => {
+    var readButtons   = document.getElementsByClassName("read-modelo");
+    var updateButtons = document.getElementsByClassName("update-modelo");
+    var deleteButtons = document.getElementsByClassName("delete-modelo");
+    for (var index=0; index < readButtons.length; index++) {
+      modalForm(readButtons[index], {
+        formURL: readButtons[index]["dataset"]["url"],
+        isDeleteForm: false
+      });
+      modalForm(updateButtons[index], {
+        formURL: updateButtons[index]["dataset"]["url"],
+        isDeleteForm: false
+      });
+      modalForm(deleteButtons[index], {
+        formURL: deleteButtons[index]["dataset"]["url"],
+        isDeleteForm: true
+      });
+    }
+  });
+
 </script>
 {% endblock extrascripts %}

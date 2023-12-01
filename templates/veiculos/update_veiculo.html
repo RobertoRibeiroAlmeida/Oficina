@@ -5,9 +5,7 @@
 
   <div class="modal-header">
     <h3 class="modal-title">Atualizar Veiculo</h3>
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
   </div>
 
   <div class="modal-body">
@@ -18,21 +16,21 @@
     </div>
 
     {% for field in form %}
-      <div class="form-group">
+      <div class="form-group{% if field.errors %} invalid {% endif %}">
         <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-        {% render_field field class="form-control" placeholder=field.label %}
-        <div class="{% if field.errors %} invalid{% endif %}">
-          {% for error in field.errors %}
-            <p class="help-block">{{ error }}</p>
-          {% endfor %}
-        </div>
+        {{ field|add_class:'form-control' }}
+        {% for error in field.errors %}
+          <p class="help-block">{{ error }}</p>
+        {% endfor %}
       </div>
+      <br>
     {% endfor %}
+
   </div>
 
   <div class="modal-footer">
-    <button type="button" class="btn btn-info" data-dismiss="modal">Cancelar</button>
-    <button type="submit" class="btn btn-primary">Update</button>
+    <button type="button" class="btn btn-info" data-bs-dismiss="modal">Cancelar</button>
+    <button type="submit" class="btn btn-primary">Salvar</button>
   </div>
 
 </form>

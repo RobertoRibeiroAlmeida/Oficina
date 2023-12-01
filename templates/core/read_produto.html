@@ -2,21 +2,30 @@
 
 <div class="modal-header">
   <h3 class="modal-title">Visualizar Produto</h3>
-  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
+  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 </div>
 
 <div class="modal-body">
-  <div class="">
-    <table class="table table-borderless">
-      <tr><td>Grupo:  </td><td>&nbsp;{{ produto.grupo }}</td></tr>
-      <tr><td>Nome:   </td><td>&nbsp;{{ produto.nome }}</td></tr>
-      <tr><td>Unidade:</td><td>&nbsp;{{ produto.unidade }}</td></tr>
-    </table>
+  <div class="row mb-3">
+    <label for="colFormLabel1" class="col-sm-2 col-form-label col-form-label-sm">Grupo</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control form-control-sm" id="colFormLabe1" placeholder="col-form-label-sm" value="{{ produto.grupo }}" readonly>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <label for="colFormLabel2" class="col-sm-2 col-form-label col-form-label-sm">Nome</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control form-control-sm" id="colFormLabe2" placeholder="col-form-label-sm" value="{{ produto.nome }}" readonly>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <label for="colFormLabel3" class="col-sm-2 col-form-label col-form-label-sm">Unidade</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control form-control-sm" id="colFormLabe3" placeholder="col-form-label-sm" value="{{ produto.get_unidade_display }}" readonly>
+    </div>
   </div>
 </div>
 
 <div class="modal-footer">
-  <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+  <button type="button" class="btn btn-info" data-bs-dismiss="modal">Fechar</button>
 </div>

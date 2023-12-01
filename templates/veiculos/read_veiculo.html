@@ -2,26 +2,24 @@
 
 <div class="modal-header">
   <h3 class="modal-title">Visualizar Veiculo</h3>
-  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
+  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 </div>
 
 <div class="modal-body">
   <div class="">
     <table class="table table-borderless">
-      <tr><td>Cliente: </td><td>&nbsp;{{ veiculo.cliente }}</td></tr>
-      <tr><td>Marca:   </td><td>&nbsp;{{ veiculo.marca }}</td></tr>
-      <tr><td>Modelo:  </td><td>&nbsp;{{ veiculo.modelo }}</td></tr>
-      <tr><td>Placa:   </td><td>&nbsp;{{ veiculo.placa }}</td></tr>
-      <tr><td>Chassis: </td><td>&nbsp;{{ veiculo.chassis }}</td></tr>
-      <tr><td>Ano Fab.:</td><td>&nbsp;{{ veiculo.ano_fabricacao }}</td></tr>
-      <tr><td>Ano Mod.:</td><td>&nbsp;{{ veiculo.ano_modelo }}</td></tr>
-      <tr><td>Cor:     </td><td>&nbsp;{{ veiculo.cor }}</td></tr>
+      <tr><td class="col-sm-2 col-form-label col-form-label-sm">Cliente: </td><td class="form-control form-control-sm">&nbsp;{{ veiculo.cliente }}</td></tr>
+      <tr><td class="col-sm-2 col-form-label col-form-label-sm">Marca:   </td><td class="form-control form-control-sm">&nbsp;{{ veiculo.marca }}</td></tr>
+      <tr><td class="col-sm-2 col-form-label col-form-label-sm">Modelo:  </td><td class="form-control form-control-sm">&nbsp;{{ veiculo.modelo }}</td></tr>
+      <tr><td class="col-sm-2 col-form-label col-form-label-sm">Placa:   </td><td class="form-control form-control-sm">&nbsp;{{ veiculo.placa }}</td></tr>
+      <tr><td class="col-sm-2 col-form-label col-form-label-sm">Chassis: </td><td class="form-control form-control-sm">&nbsp;{{ veiculo.chassis }}</td></tr>
+      <tr><td class="col-sm-2 col-form-label col-form-label-sm">Ano Fab.:</td><td class="form-control form-control-sm">&nbsp;{{ veiculo.ano_fabricacao }}</td></tr>
+      <tr><td class="col-sm-2 col-form-label col-form-label-sm">Ano Mod.:</td><td class="form-control form-control-sm">&nbsp;{{ veiculo.ano_modelo }}</td></tr>
+      <tr><td class="col-sm-2 col-form-label col-form-label-sm">Cor:     </td><td class="form-control form-control-sm">&nbsp;{{ veiculo.cor }}</td></tr>
     </table>
   </div>
 </div>
 
 <div class="modal-footer">
-  <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+  <button type="button" class="btn btn-info" data-bs-dismiss="modal">Fechar</button>
 </div>

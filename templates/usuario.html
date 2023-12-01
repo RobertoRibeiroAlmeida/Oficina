@@ -10,7 +10,7 @@
   <title>O F I C I N A - Manutenção de Veículos</title>
   {% block stylesheets %}
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/dist/css/bootstrap.css' %}">
     <!-- Custom CSS -->
   {% endblock stylesheets %}
 </head>
@@ -18,7 +18,7 @@
 
   <header class="section-header py-4">
 	<div class="container">
-	  <h1>O F I C I N A - Manutenção de Veículos</h1>
+      <h1 align="center"><i class="fa fa-car fa-2x"></i>&nbsp;&nbsp;O F I C I N A - Manutenção de Veículos</h1>
 	</div>
   </header> <!-- section-header.// -->
 
@@ -36,11 +36,10 @@
 
   <!-- JavaScript -->
   {% block scripts %}
-    <script src="{% static 'assets/js/jquery-3.2.1.min.js' %}"></script>
-    <script src="{% static 'assets/js/popper.min.js' %}"></script>
-    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'js/jquery.bootstrap.modal.forms.js' %}"></script>
-    <script src="https://kit.fontawesome.com/e511c0d9d9.js" crossorigin="anonymous"></script>
+      <script src="{% static 'assets/dist/js/bootstrap.bundle.min.js' %}"></script>
+      <script src="{% static 'js/sidebars.js' %}"></script>
+      <script src="{% static 'js/bootstrap5.modal.forms.js' %}"></script>
+      <script src="https://kit.fontawesome.com/e511c0d9d9.js" crossorigin="anonymous"></script>
   {% endblock scripts %}
   {% block extrascripts %}{% endblock extrascripts %}
 </body>

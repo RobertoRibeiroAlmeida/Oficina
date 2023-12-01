@@ -1,15 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
 
-  <!-- Modal 1 with id="create-marca"-->
-  <div class="modal fade" id="create-modal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog mt-5">
-      <div class="modal-content">
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal 2 with id="modal" -->
   <div class="modal fade" tabindex="-1" role="dialog" id="modal">
     <div class="modal-dialog" role="document">
       <div class="modal-content"></div>
@@ -18,7 +9,6 @@
 
   <h2>PROFISSIONAIS</h2>
 
-  <!-- Create marca button -->
   <button id="create-profissional" class="btn btn-primary" type="button" name="button">
     <span class="fa fa-plus mr-2"></span>Novo Profissional
   </button>
@@ -40,20 +30,17 @@
         <td>{{ profissional.nome }}</td>
         <td>{{ profissional.especialidade }}</td>
         <td>
-          <!-- Read marca buttons -->
-          <button type="button" class="read-profissional bs-modal btn btn-sm btn-primary" data-form-url="{% url 'core:read_profissional' profissional.pk %}">
+          <button type="button" id="read-profissional" class="read-profissional bs-modal btn btn-sm btn-primary" data-url="{% url 'core:read_profissional' profissional.pk %}">
             <span class="fa fa-eye"></span>
           </button>
         </td>
         <td>
-          <!-- Update marca buttons -->
-          <button type="button" class="update-profissional bs-modal btn btn-sm btn-primary" data-form-url="{% url 'core:update_profissional' profissional.pk %}">
+          <button type="button" id="update-profissional" class="update-profissional bs-modal btn btn-sm btn-primary" data-url="{% url 'core:update_profissional' profissional.pk %}">
             <span class="fa fa-pencil"></span>
           </button>
         </td>
         <td>
-          <!-- Delete marca buttons -->
-          <button type="button" class="delete-profissional bs-modal btn btn-sm btn-danger" data-form-url="{% url 'core:delete_profissional' profissional.pk %}">
+          <button type="button" id="delete-profissional" class="delete-profissional bs-modal btn btn-sm btn-danger" data-url="{% url 'core:delete_profissional' profissional.pk %}">
             <span class="fa fa-trash"></span>
           </button>
         </td>
@@ -66,29 +53,32 @@
 
 {% block extrascripts %}
 <script type="text/javascript">
-  $(function () {
 
-    // Read profissional buttons
-    $(".read-profissional").each(function () {
-        $(this).modalForm({formURL: $(this).data("form-url")});
-    });
-
-    // Update profissional buttons
-    $(".update-profissional").each(function () {
-        $(this).modalForm({formURL: $(this).data("form-url")});
-    });
-
-    // Delete profissional buttons - formURL is retrieved from the data of the element
-    $(".delete-profissional").each(function () {
-        $(this).modalForm({formURL: $(this).data("form-url"), isDeleteForm: true});
-    });
-
-    // Create profissional button opens form in modal with id="create-modal"
-    $("#create-profissional").modalForm({
-        formURL: "{% url 'core:create_profissional' %}",
-        modalID: "#create-modal"
-    });
-
+  document.addEventListener('DOMContentLoaded', (e) => {
+    modalForm(document.getElementById('create-profissional'), {
+      formURL: "{% url 'core:create_profissional' %}"
+    })
   });
+
+  document.addEventListener('DOMContentLoaded', (e) => {
+    var readButtons   = document.getElementsByClassName("read-profissional");
+    var updateButtons = document.getElementsByClassName("update-profissional");
+    var deleteButtons = document.getElementsByClassName("delete-profissional");
+    for (var index=0; index < readButtons.length; index++) {
+      modalForm(readButtons[index], {
+        formURL: readButtons[index]["dataset"]["url"],
+        isDeleteForm: false
+      });
+      modalForm(updateButtons[index], {
+        formURL: updateButtons[index]["dataset"]["url"],
+        isDeleteForm: false
+      });
+      modalForm(deleteButtons[index], {
+        formURL: deleteButtons[index]["dataset"]["url"],
+        isDeleteForm: true
+      });
+    }
+  });
+
 </script>
 {% endblock extrascripts %}

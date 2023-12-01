@@ -1,21 +1,25 @@
 {% load widget_tweaks %}
 
 <div class="modal-header">
-  <h3 class="modal-title">Visualizar Servico</h3>
-  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
+  <h3 class="modal-title">Visualizar Serviço</h3>
+  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 </div>
 
 <div class="modal-body">
-  <div class="">
-    <table class="table table-borderless">
-      <tr><td>Grupo:  </td><td>&nbsp;{{ servico.grupo }}</td></tr>
-      <tr><td>Nome:   </td><td>&nbsp;{{ servico.nome }}</td></tr>
-    </table>
+  <div class="row mb-3">
+    <label for="colFormLabel1" class="col-sm-2 col-form-label col-form-label-sm">Grupo</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control form-control-sm" id="colFormLabe1" placeholder="col-form-label-sm" value="{{ servico.grupo }}" readonly>
+    </div>
+  </div>
+  <div class="row mb-3">
+    <label for="colFormLabel2" class="col-sm-2 col-form-label col-form-label-sm">Nome</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control form-control-sm" id="colFormLabe2" placeholder="col-form-label-sm" value="{{ servico.nome }}" readonly>
+    </div>
   </div>
 </div>
 
 <div class="modal-footer">
-  <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+  <button type="button" class="btn btn-info" data-bs-dismiss="modal">Fechar</button>
 </div>

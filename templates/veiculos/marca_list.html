@@ -1,15 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
 
-  <!-- Modal 1 with id="create-marca"-->
-  <div class="modal fade" id="create-modal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog mt-5">
-      <div class="modal-content">
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal 2 with id="modal" -->
   <div class="modal fade" tabindex="-1" role="dialog" id="modal">
     <div class="modal-dialog" role="document">
       <div class="modal-content"></div>
@@ -18,7 +9,6 @@
 
   <h2>M A R C A S</h2>
 
-  <!-- Create marca button -->
   <button id="create-marca" class="btn btn-primary" type="button" name="button">
     <span class="fa fa-plus mr-2"></span>Nova Marca
   </button>
@@ -38,20 +28,17 @@
       <tr>
         <td>{{ marca.nome }}</td>
         <td>
-          <!-- Read marca buttons -->
-          <button type="button" class="read-marca bs-modal btn btn-sm btn-primary" data-form-url="{% url 'veiculos:read_marca' marca.pk %}">
+          <button type="button" id="read-marca" class="read-marca bs-modal btn btn-sm btn-primary" data-url="{% url 'veiculos:read_marca' marca.pk %}">
             <span class="fa fa-eye"></span>
           </button>
         </td>
         <td>
-          <!-- Update marca buttons -->
-          <button type="button" class="update-marca bs-modal btn btn-sm btn-primary" data-form-url="{% url 'veiculos:update_marca' marca.pk %}">
+          <button type="button" id="update-marca" class="update-marca bs-modal btn btn-sm btn-primary" data-url="{% url 'veiculos:update_marca' marca.pk %}">
             <span class="fa fa-pencil"></span>
           </button>
         </td>
         <td>
-          <!-- Delete marca buttons -->
-          <button type="button" class="delete-marca bs-modal btn btn-sm btn-danger" data-form-url="{% url 'veiculos:delete_marca' marca.pk %}">
+          <button type="button" id="delete-marca" class="delete-marca bs-modal btn btn-sm btn-danger" data-url="{% url 'veiculos:delete_marca' marca.pk %}">
             <span class="fa fa-trash"></span>
           </button>
         </td>
@@ -64,29 +51,32 @@
 
 {% block extrascripts %}
 <script type="text/javascript">
-  $(function () {
 
-    // Read marca buttons
-    $(".read-marca").each(function () {
-        $(this).modalForm({formURL: $(this).data("form-url")});
-    });
-
-    // Update marca buttons
-    $(".update-marca").each(function () {
-        $(this).modalForm({formURL: $(this).data("form-url")});
-    });
-
-    // Delete marca buttons - formURL is retrieved from the data of the element
-    $(".delete-marca").each(function () {
-        $(this).modalForm({formURL: $(this).data("form-url"), isDeleteForm: true});
-    });
-
-    // Create marca button opens form in modal with id="create-modal"
-    $("#create-marca").modalForm({
-        formURL: "{% url 'veiculos:create_marca' %}",
-        modalID: "#create-modal"
-    });
-
+  document.addEventListener('DOMContentLoaded', (e) => {
+    modalForm(document.getElementById('create-marca'), {
+      formURL: "{% url 'veiculos:create_marca' %}"
+    })
   });
+
+  document.addEventListener('DOMContentLoaded', (e) => {
+    var readButtons   = document.getElementsByClassName("read-marca");
+    var updateButtons = document.getElementsByClassName("update-marca");
+    var deleteButtons = document.getElementsByClassName("delete-marca");
+    for (var index=0; index < readButtons.length; index++) {
+      modalForm(readButtons[index], {
+        formURL: readButtons[index]["dataset"]["url"],
+        isDeleteForm: false
+      });
+      modalForm(updateButtons[index], {
+        formURL: updateButtons[index]["dataset"]["url"],
+        isDeleteForm: false
+      });
+      modalForm(deleteButtons[index], {
+        formURL: deleteButtons[index]["dataset"]["url"],
+        isDeleteForm: true
+      });
+    }
+  });
+
 </script>
 {% endblock extrascripts %}
